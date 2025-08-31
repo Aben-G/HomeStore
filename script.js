@@ -149,10 +149,10 @@ navLinksList.forEach(link => {
     });
 });
 
-// ================= FORM VALIDATION =================
+// ================= FORM VALIDATION + SUBMISSION =================
 const orderForm = document.querySelector('.order-form form');
 if (orderForm) {
-    orderForm.addEventListener('submit', (e) => {
+    orderForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = document.getElementById('name');
@@ -178,8 +178,26 @@ if (orderForm) {
         }
 
         if (isValid) {
-            alert('Order placed successfully! Our team will contact you shortly.');
-            orderForm.reset();
+            try {
+                const formData = new FormData(orderForm);
+
+                const response = await fetch(orderForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('✅ Order placed successfully! Check your email for confirmation.');
+                    orderForm.reset();
+                } else {
+                    alert('❌ Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                alert('⚠️ Network error. Please try again later.');
+            }
         }
     });
 }

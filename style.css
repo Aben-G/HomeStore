@@ -1186,46 +1186,31 @@ header {
 }
 
 .price-card {
-    background: var(--card-bg);
-    padding: 2.5rem 2rem;
     border-radius: 16px;
     text-align: center;
     transition: var(--transition);
-    box-shadow: 0 10px 30px var(--shadow-color);
+    padding: 2.5rem 2rem;
     position: relative;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    overflow: hidden;
 }
 
 .price-card:hover {
     transform: translateY(-10px);
 }
 
-.featured-price-card {
-    transform: scale(1.05);
-    z-index: 2;
-}
-
-.featured-price-card:hover {
-    transform: scale(1.05) translateY(-10px);
-}
-
-.badge {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--accent-color);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-}
-
 .price {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: black;
     margin: 1.5rem 0;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: var(--neutral-medium);
+    margin-right: 0.5rem;
+    font-weight: 500;
 }
 
 .price-card ul {
@@ -1247,6 +1232,188 @@ header {
 .faded {
     opacity: 0.5;
 }
+
+
+
+
+#glow-core>*,
+#glow-pro>* {
+    position: relative;
+    z-index: 1;
+}
+
+#glow-core::before,
+#glow-pro::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    border-radius: 16px;
+    z-index: 0;
+    background: linear-gradient(60deg,
+            rgba(120, 114, 114, 0.8),
+            rgba(78, 205, 196, 0.8),
+            rgba(255, 107, 107, 0.8),
+            rgba(255, 209, 102, 0.8));
+    background-size: 400% 400%;
+    /* make gradient large for animation */
+    animation: gradientMove 8s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =============== Knee Pain Relief Section =============== */
+.knee-relief {
+    padding: 5rem 2rem;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+}
+
+.knee-relief .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    color: var(--primary-color);
+}
+
+.relief-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.relief-card {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.relief-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px var(--shadow-color);
+}
+
+.image-holder {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-holder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.relief-card:hover .image-holder img {
+    transform: scale(1.05);
+}
+
+.relief-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.relief-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.relief-list {
+    list-style: none;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.relief-list li {
+    position: relative;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    font-weight: 500;
+    color: var(--neutral-dark);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.5s forwards;
+}
+
+.relief-list li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: var(--secondary-color);
+}
+
+.relief-list li:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.relief-list li:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.relief-list li:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.relief-list li:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card pop-up animation */
+.animate-pop {
+    opacity: 0;
+    transform: translateY(40px);
+    animation: popUp 0.8s forwards;
+}
+
+.animate-pop.delay-1 {
+    animation-delay: 0.2s;
+}
+
+.animate-pop.delay-2 {
+    animation-delay: 0.4s;
+}
+
+@keyframes popUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 /* =============== FAQ SECTION =============== */
 .faq {

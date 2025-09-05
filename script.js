@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
-    // Check if elements exist before adding event listeners
+
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', function (e) {
             e.stopPropagation(); // Prevent event from bubbling up
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Close mobile menu when clicking on a link
+
         const navItems = document.querySelectorAll('.nav-links a');
         navItems.forEach(item => {
             item.addEventListener('click', function () {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Close mobile menu when clicking outside
+
         document.addEventListener('click', function (e) {
             if (navLinks.classList.contains('active') &&
                 !hamburger.contains(e.target) &&
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Close mobile menu on resize if window becomes larger
+
         window.addEventListener('resize', function () {
             if (window.innerWidth > 968) {
                 hamburger.classList.remove('active');
